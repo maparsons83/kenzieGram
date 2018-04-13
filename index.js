@@ -22,7 +22,7 @@ const html = {
         </head>
         <body>
     `,
-    header: `<h1>Welcome to Kenziegram!</h1>`,
+    header: `<div id=welcomeBox><h1>Welcome to Kenziegram!</h1></div?`,
     uploadForm: `
         <form method="post" action="http://localhost:3000/" enctype="multipart/form-data">
             <div>
@@ -30,7 +30,7 @@ const html = {
                 <input type="file" id="file" name="myFile">
             </div>
             <div>
-                <button type="submit">Send the file</button>
+                <button type="submit">Upload Picture</button>
             </div>
         </form>
     `,
@@ -51,7 +51,7 @@ app.get('/', (req, res) => {
     fs.readdir(uploadsPath, function (err, items) {
         for (let imagePath of items) {
             html.images += `
-                <img src="uploads/${ imagePath }">
+                <img class="img" src="uploads/${ imagePath }">
             `
         }
         res.send(generateHTML());
