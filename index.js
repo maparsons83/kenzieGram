@@ -43,18 +43,22 @@ const html = {
 }
 
 app.use(express.static('public'));
+app.set('view engine', 'pug')
 
 app.listen(port);
 
 app.get('/', (req, res) => {
-    html.images = "";
+    let uploadedImages = "";
     fs.readdir(uploadsPath, function (err, items) {
-        for (let imagePath of items) {
-            html.images += `
-                <img class="img" src="uploads/${ imagePath }">
-            `
-        }
-        res.send(generateHTML());
+        // for (let imagePath of items) {
+        //     uploadedImages += `
+        //         <img class="img" src="uploads/${ imagePath }">
+        //     `
+        // }
+        // console.log(uploadedImages)
+        // const picWindow = document.getElementById('pictureBox').appendChild(uploadedImages);
+
+        res.render('index', {title: 'Kenziegram', images: items})
     });
 });
 
@@ -68,4 +72,4 @@ app.post('/', upload.single('myFile'), function (req, res, next) {
     res.redirect("/");
 });
 
-const generateHTML = () => html.opening + html.header + html.uploadForm + html.images + html.ending;
+// const generateHTML = () => html.opening + html.header + html.uploadForm + html.images + html.ending;

@@ -1,3 +1,18 @@
-ul
-    each imgPath in uploadedImages
-        img= imgPath
+DOCTYPE
+html 
+head
+
+    link(rel="stylesheet" href="style.css")
+    
+body
+    #welcomeBox
+        h1 Welcome to Kenziegram!
+
+    form(method="post" action="http://localhost:3000/" enctype="multipart/form-data")
+        label(for="file") Choose a picture
+        input(type="file" id="file" name="myFile")
+        button(type="submit") Upload Picture
+
+#pictureBox
+    each image in images
+        img(src=`./uploads/${image}`, alt="")
