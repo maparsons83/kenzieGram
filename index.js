@@ -50,15 +50,14 @@ app.listen(port);
 app.get('/', (req, res) => {
     let uploadedImages = "";
     fs.readdir(uploadsPath, function (err, items) {
-        // for (let imagePath of items) {
-        //     uploadedImages += `
-        //         <img class="img" src="uploads/${ imagePath }">
-        //     `
-        // }
-        // console.log(uploadedImages)
-        // const picWindow = document.getElementById('pictureBox').appendChild(uploadedImages);
 
         res.render('index', {title: 'Kenziegram', images: items})
+    });
+});
+
+app.get('/uploads', (req, res) => {
+    fs.readdir(uploadsPath, (req, res) => {
+        const now = Date.now();
     });
 });
 
