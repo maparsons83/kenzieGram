@@ -43,6 +43,7 @@ const uploadsPath = './public/uploads';
 // }
 
 app.use(express.static('public'));
+app.use(express.json());
 app.set('view engine', 'pug')
 
 app.listen(port);
@@ -55,13 +56,28 @@ app.get('/', (req, res) => {
     });
 });
 
-app.get('/uploads', (req, res) => {
-    fs.readdir(uploadsPath, (req, res) => {
-        const now = Date.now();
+
+
+app.post('/latest', (req,res) => {
+    
+    
+    //see if previous timestamp is = to the current upload folder timestamp
+    //find all the files that are more recent than previousTimestamp
+   
+    
+   
+    const previousTimestamp = req.body.timestamp;
+    const newFiles = uploaded_files.filter(item => {
+       
+        return fs.statSync(uploadsPath + "/" + item).mtimeMs > previousTimestamp 
+    });
+    res.send({
+        images: newFiles,
+        timestamp: fs.statSync(uploadsPath).mtimeMs,
     });
 });
 
-app.post('/', upload.single('myFile'), function (req, res, next) {
+app.post('/upload', upload.single('myFile'), function (req, res, next) {
     // req.file is the `myFile` file
     // req.body will hold the text fields, if there were any
 

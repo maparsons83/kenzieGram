@@ -8,7 +8,7 @@ body
     #welcomeBox
         h1 Welcome to Kenziegram!
 
-    form(method="post" action="http://localhost:3000/" enctype="multipart/form-data")
+    form(method="post" action="/upload" enctype="multipart/form-data")
         label(for="file") Choose a picture
         input(type="file" id="file" name="myFile")
         button(type="submit") Upload Picture
