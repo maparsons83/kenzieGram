@@ -68,7 +68,6 @@ app.post('/latest', (req,res) => {
    
     const previousTimestamp = req.body.timestamp;
     const newFiles = uploaded_files.filter(item => {
-       
         return fs.statSync(uploadsPath + "/" + item).mtimeMs > previousTimestamp 
     });
     res.send({
