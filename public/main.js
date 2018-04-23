@@ -39,5 +39,5 @@ function fetchFunction() {
         });
         
 };
-fetchFunction();
+// fetchFunction();
 fetchLatest();
